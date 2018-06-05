@@ -124,8 +124,7 @@ static CGFloat const PageWidth = 16;
         self.leftImgV.image = [UIImage imageNamed:self.imageArray[(tc - 1 + _curIndex)%tc]];
         self.rightImgV.image = [UIImage imageNamed:self.imageArray[(tc + 1 + _curIndex)%tc]];
     }
-    
-    
+
 }
 
 // 算法逻辑
