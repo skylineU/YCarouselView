@@ -20,25 +20,45 @@ YCarouselView *c = [[YCarouselView alloc] initWithFrame:CGRectMake(0, 100, kScre
 
 #### 重点：
 
-1、给UIImageView赋值
+1、给UIImageView赋值(增加兼容只有一张或两张图的情况)
 ```
 // 赋值
 - (void)setupCurrentValue{
     
     NSInteger tc = self.imageArray.count;
-    
+    // 考虑图片的个数
     if (self.isUrlImage) {
         [self.middleImgV sd_setImageWithURL:[NSURL URLWithString:self.imageArray[_curIndex]] placeholderImage:nil options:SDWebImageRetryFailed];
-        [self.leftImgV sd_setImageWithURL:[NSURL URLWithString:self.imageArray[(tc - 1 + _curIndex)%tc]] placeholderImage:nil options:SDWebImageRetryFailed];
-        [self.rightImgV sd_setImageWithURL:[NSURL URLWithString:self.imageArray[(tc + 1 + _curIndex)%tc]] placeholderImage:nil options:SDWebImageRetryFailed];
+        if (tc == 1) {
+            [self.leftImgV sd_setImageWithURL:[NSURL URLWithString:self.imageArray[_curIndex]] placeholderImage:nil options:SDWebImageRetryFailed];
+            [self.rightImgV sd_setImageWithURL:[NSURL URLWithString:self.imageArray[_curIndex]] placeholderImage:nil options:SDWebImageRetryFailed];
+        } else if (tc == 2){
+            [self.leftImgV sd_setImageWithURL:[NSURL URLWithString:self.imageArray[(tc - 1 + _curIndex)%tc]] placeholderImage:nil options:SDWebImageRetryFailed];
+            [self.rightImgV sd_setImageWithURL:[NSURL URLWithString:self.imageArray[(tc - 1 + _curIndex)%tc]] placeholderImage:nil options:SDWebImageRetryFailed];
+            
+        } else if (tc >= 3){
+            [self.leftImgV sd_setImageWithURL:[NSURL URLWithString:self.imageArray[(tc - 1 + _curIndex)%tc]] placeholderImage:nil options:SDWebImageRetryFailed];
+            [self.rightImgV sd_setImageWithURL:[NSURL URLWithString:self.imageArray[(tc + 1 + _curIndex)%tc]] placeholderImage:nil options:SDWebImageRetryFailed];
+        }
+        
 
     } else {
         // 看图片放在哪，一般都是Assets.xcassets
         self.middleImgV.image = [UIImage imageNamed:self.imageArray[_curIndex]];
-        self.leftImgV.image = [UIImage imageNamed:self.imageArray[(tc - 1 + _curIndex)%tc]];
-        self.rightImgV.image = [UIImage imageNamed:self.imageArray[(tc + 1 + _curIndex)%tc]];
+        if (tc == 1) {
+            self.leftImgV.image = [UIImage imageNamed:self.imageArray[_curIndex]];
+            self.rightImgV.image = [UIImage imageNamed:self.imageArray[_curIndex]];
+        } else if (tc == 2){
+            self.leftImgV.image = [UIImage imageNamed:self.imageArray[(tc - 1 + _curIndex)%tc]];
+            self.rightImgV.image = [UIImage imageNamed:self.imageArray[(tc - 1 + _curIndex)%tc]];
+        } else if (tc >= 3){
+            self.leftImgV.image = [UIImage imageNamed:self.imageArray[(tc - 1 + _curIndex)%tc]];
+            self.rightImgV.image = [UIImage imageNamed:self.imageArray[(tc + 1 + _curIndex)%tc]];
+        }
+        
     }
-
+    
+    
 }
 
 ```
