@@ -14,7 +14,6 @@
 		AE38D24820C66F8C00C03DE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE38D24720C66F8C00C03DE4 /* Assets.xcassets */; };
 		AE38D24B20C66F8C00C03DE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE38D24920C66F8C00C03DE4 /* LaunchScreen.storyboard */; };
 		AE38D24E20C66F8C00C03DE4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AE38D24D20C66F8C00C03DE4 /* main.m */; };
-		AE38D25720C66FB700C03DE4 /* YCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE38D25520C66FB700C03DE4 /* YCarouselView.m */; };
 		AE38D26220C66FEC00C03DE4 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE38D25920C66FEC00C03DE4 /* 1.jpg */; };
 		AE38D26320C66FEC00C03DE4 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE38D25A20C66FEC00C03DE4 /* 2.jpg */; };
 		AE38D26420C66FEC00C03DE4 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE38D25B20C66FEC00C03DE4 /* 3.jpg */; };
@@ -24,6 +23,7 @@
 		AE38D26820C66FEC00C03DE4 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE38D25F20C66FEC00C03DE4 /* 7.jpg */; };
 		AE38D26920C66FEC00C03DE4 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE38D26020C66FEC00C03DE4 /* 8.jpg */; };
 		AE38D26A20C66FEC00C03DE4 /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE38D26120C66FEC00C03DE4 /* 9.jpg */; };
+		AEFC7A3320D3C76B00A80E78 /* YCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = AEFC7A3120D3C76A00A80E78 /* YCarouselView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,8 +39,6 @@
 		AE38D24A20C66F8C00C03DE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE38D24C20C66F8C00C03DE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE38D24D20C66F8C00C03DE4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		AE38D25520C66FB700C03DE4 /* YCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCarouselView.m; sourceTree = "<group>"; };
-		AE38D25620C66FB700C03DE4 /* YCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCarouselView.h; sourceTree = "<group>"; };
 		AE38D25920C66FEC00C03DE4 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		AE38D25A20C66FEC00C03DE4 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		AE38D25B20C66FEC00C03DE4 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
@@ -50,6 +48,8 @@
 		AE38D25F20C66FEC00C03DE4 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
 		AE38D26020C66FEC00C03DE4 /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
 		AE38D26120C66FEC00C03DE4 /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
+		AEFC7A3120D3C76A00A80E78 /* YCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCarouselView.m; sourceTree = "<group>"; };
+		AEFC7A3220D3C76A00A80E78 /* YCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCarouselView.h; sourceTree = "<group>"; };
 		D97AFEEBA29E44B0AF9A657D /* libPods-轮播图.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-轮播图.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -121,8 +121,8 @@
 		AE38D25420C66FA400C03DE4 /* YCarouselView */ = {
 			isa = PBXGroup;
 			children = (
-				AE38D25620C66FB700C03DE4 /* YCarouselView.h */,
-				AE38D25520C66FB700C03DE4 /* YCarouselView.m */,
+				AEFC7A3220D3C76A00A80E78 /* YCarouselView.h */,
+				AEFC7A3120D3C76A00A80E78 /* YCarouselView.m */,
 			);
 			path = YCarouselView;
 			sourceTree = "<group>";
@@ -276,7 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE38D25720C66FB700C03DE4 /* YCarouselView.m in Sources */,
+				AEFC7A3320D3C76B00A80E78 /* YCarouselView.m in Sources */,
 				AE38D24320C66F8B00C03DE4 /* ViewController.m in Sources */,
 				AE38D24E20C66F8C00C03DE4 /* main.m in Sources */,
 				AE38D24020C66F8B00C03DE4 /* AppDelegate.m in Sources */,
@@ -422,7 +422,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "轮播图/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "yun.---";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -436,7 +439,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "轮播图/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "yun.---";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

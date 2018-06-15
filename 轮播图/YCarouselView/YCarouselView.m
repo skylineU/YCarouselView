@@ -7,7 +7,6 @@
 //
 
 #import "YCarouselView.h"
-#import "UIImageView+WebCache.h"
 
 static CGFloat const TimeInterval = 3;
 static CGFloat const AfterDelay = 1;
@@ -15,11 +14,12 @@ static CGFloat const AnimateDuration = 0.3;
 static CGFloat const PageWidth = 16;
 
 @interface YCarouselView ()<UIScrollViewDelegate>
+
 // 图片数组
 @property(nonatomic,copy) NSArray *imageArray;
 // 是否是网络图片
 @property(nonatomic,assign,getter=isUrlImage) BOOL urlImage;
-// 当前index
+
 @property(nonatomic,assign) NSInteger curIndex;
 
 @property(nonatomic,strong) UIScrollView *scrollView;
@@ -36,6 +36,10 @@ static CGFloat const PageWidth = 16;
 @end
 
 @implementation YCarouselView
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    return [self initWithFrame:frame urlImages:nil localImages:nil];
+}
 
 - (instancetype)initWithFrame:(CGRect)frame urlImages:(NSArray *)urlImages {
     return [self initWithFrame:frame urlImages:urlImages localImages:nil];
@@ -61,6 +65,23 @@ static CGFloat const PageWidth = 16;
     return self;
 }
 
+- (void)setupImageArray:(NSArray *)imageArray urlImage:(BOOL)urlImage{
+    if (imageArray.count == 0) return;
+    _imageArray = imageArray;
+    _urlImage = urlImage;
+    
+    self.pageControl.frame = CGRectMake(0, 0, PageWidth*_imageArray.count, 30);
+    self.pageControl.center = CGPointMake(self.center.x, CGRectGetMaxY(self.bounds) - 15);
+    self.pageControl.numberOfPages = _imageArray.count;
+    
+    //
+    self.curIndex = 0;
+    [self setupCurrentValue];
+    // 现将之前的timer销毁在重新设置
+    [self.timer invalidate];
+    self.timerEnd = YES;
+    [self launchTimer];
+}
 
 - (void)initSubviews{
     
@@ -68,8 +89,8 @@ static CGFloat const PageWidth = 16;
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
-//    self.scrollView.bounces = NO;
     self.scrollView.delegate = self;
+    
     self.scrollView.contentSize = CGSizeMake(kScreenWidth * 3, CGRectGetHeight(self.frame));
     [self addSubview:self.scrollView];
     
@@ -112,6 +133,8 @@ static CGFloat const PageWidth = 16;
 - (void)setupCurrentValue{
     
     NSInteger tc = self.imageArray.count;
+    if (tc == 0) return;
+    
     // 考虑图片的个数
     if (self.isUrlImage) {
         [self.middleImgV sd_setImageWithURL:[NSURL URLWithString:self.imageArray[_curIndex]] placeholderImage:nil options:SDWebImageRetryFailed];
@@ -127,7 +150,7 @@ static CGFloat const PageWidth = 16;
             [self.rightImgV sd_setImageWithURL:[NSURL URLWithString:self.imageArray[(tc + 1 + _curIndex)%tc]] placeholderImage:nil options:SDWebImageRetryFailed];
         }
         
-        
+
     } else {
         // 看图片放在哪，一般都是Assets.xcassets
         self.middleImgV.image = [UIImage imageNamed:self.imageArray[_curIndex]];
@@ -143,10 +166,11 @@ static CGFloat const PageWidth = 16;
         }
         
     }
-
+    
+    
 }
 
-// 算法逻辑
+// 算法
 - (void)slidingAlgorithmWithRight:(BOOL)right animation:(BOOL)animation{
     if (right) {
         if (self.curIndex >= self.imageArray.count - 1) {
@@ -199,8 +223,11 @@ static CGFloat const PageWidth = 16;
 
 // 启动计时器
 - (void)launchTimer{
-    self.timerEnd = NO;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:TimeInterval target:self selector:@selector(timerRun:) userInfo:nil repeats:YES];
+    if (_imageArray.count > 0) {
+        self.timerEnd = NO;
+        self.timer = [NSTimer timerWithTimeInterval:TimeInterval target:self selector:@selector(timerRun:) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+    }
 }
 
 #pragma mark -- action
